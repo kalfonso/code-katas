@@ -1,5 +1,7 @@
 package ktictactoe;
 
+import static java.lang.String.format;
+
 public class Board {
 
     private final char[][] board;
@@ -14,6 +16,9 @@ public class Board {
     }
 
     public void marcPosition(int x, int y, char value) {
+        if (board[x][y] != '.') {
+            throw new IllegalArgumentException(format("Position %s,%s is occupied", x, y));
+        }
         board[x][y] = value;
     }
 
