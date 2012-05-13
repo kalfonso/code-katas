@@ -60,10 +60,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TicTacToe.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TicTacToe.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/tictactoe/TicTacToe.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="4" column="13" selection-start="60" selection-end="60" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameParser.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tictactoe/GameParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="13" selection-start="33" selection-end="33" vertical-scroll-proportion="0.047923323">
               <folding />
             </state>
           </provider>
@@ -78,6 +87,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/tictactoe/TicTacToe.java" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
@@ -417,6 +433,13 @@
     <entry file="file://$PROJECT_DIR$/src/tictactoe/TicTacToe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="13" selection-start="60" selection-end="60" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tictactoe/GameParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="33" selection-end="33" vertical-scroll-proportion="0.047923323">
           <folding />
         </state>
       </provider>
