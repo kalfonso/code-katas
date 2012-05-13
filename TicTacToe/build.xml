@@ -14,7 +14,7 @@
 		<mkdir dir="${dist}/lib"/>
 		<jar jarfile="${dist}/lib/${project_name}.jar" basedir="${build}">
 			<manifest>
-				<attribute name="Main-Class" value="tictactoe.Game"/>
+				<attribute name="Main-Class" value="tictactoe.TicTacToe"/>
 			</manifest>
 		</jar>
 	</target>

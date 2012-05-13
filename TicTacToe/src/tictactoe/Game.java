@@ -1,46 +1,58 @@
 package tictactoe;
 
-import java.util.Scanner;
-
 public class Game {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		while(true) {
-			playGame(scanner);
-			System.out.println("Game Over!");
-			playAnother(scanner);
-		}
+	private Player[] players = new Player[2];
+	private int turnCounter;
+	private Board board;
+	
+	public Game() {
+		board = new Board();
+		players[0] = new Player(CellValue.CROSS);
+		players[1] = new Player(CellValue.NOUGHT);
 	}
-
-	public static void playGame(Scanner scanner){
-		TicTacToe tictactoe = new TicTacToe();
-		while(!tictactoe.isGameOver()){
-			System.out.print(tictactoe.getBoard().toString());
-			String positionStr = scanner.nextLine();		
-			play(tictactoe, positionStr);
-		}
-		System.out.print(tictactoe.getBoard().toString());
+		
+	public boolean play(Position position) {
+		if(board.getValue(position) != CellValue.EMPTY || isGameOver())
+			return false;
+		CellValue value = activePlayer().geValue();
+		board.setValue(position, value);
+		turnCounter++;
+		checkGameOver(position);
+		return true;
 	}
 	
-	public static void play(TicTacToe tictactoe, String positionStr) {
-		try {
-			Position position = Position.parse(positionStr);
-			tictactoe.play(position);
-		} catch(IllegalArgumentException e) {
-			System.out.println("Invalid Input: " + e.getMessage() + "!");
-		} catch (Exception e){
-			System.out.println("Wrong Position!");
+	private boolean checkGameOver(Position position) {
+		if(board.completesLine(position)) {
+			activePlayer().setStatus(PlayerStatus.Loser);
+			inactivePlayer().setStatus(PlayerStatus.Winner);
+			turnCounter = 9;
+			return true;
 		}
+		if(isGameOver()) {
+			activePlayer().setStatus(PlayerStatus.Tie);
+			inactivePlayer().setStatus(PlayerStatus.Tie);
+			return true;
+		}
+		return false;
 	}
 	
-	public static void playAnother(Scanner scanner){
-		System.out.println("Play another?(n for exit)");
-		String response = scanner.nextLine();
-		if(response.equals("n"))
-			System.exit(0);
+	public Board getBoard() {
+		return board;
+	}
+	
+	public boolean isGameOver() {
+		return turnCounter >= 9;
+	}
+	
+	public Player activePlayer() {
+		return players[turnCounter % 2];
+	}
+	
+	public Player inactivePlayer() {
+		return players[(turnCounter + 1) % 2];
+	}
+	
+	public Player getPlayer(int index) {
+		return players[index];
 	}
 }

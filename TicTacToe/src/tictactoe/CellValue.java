@@ -1,16 +1,14 @@
 package tictactoe;
 
-public enum CellValue {	
-	EMPTY_VALUE, FIRST_VALUE, SECOND_VALUE;
+public enum CellValue {
+	EMPTY('.'), CROSS('X'), NOUGHT('O');
 	
-	public char charValue(){
-		switch(this) {
-		case FIRST_VALUE:
-			return 'x';
-		case SECOND_VALUE:
-			return 'o';
-		default:
-			return '.';
-		}
+	private char value;
+	private CellValue(char value) {
+		this.value = value;
+	}
+	
+	public char getValue() {
+		return value;
 	}
 }

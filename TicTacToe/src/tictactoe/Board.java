@@ -1,52 +1,58 @@
 package tictactoe;
+import java.util.Arrays;
 
 public class Board {
 	private CellValue[][] values;
-	
-	public Board(int length) {
-		values = new CellValue[length][length];
-		initValues();
+
+	public Board() {
+		values = new CellValue[3][3];
+		for(int i = 0; i < 3; i++)
+			Arrays.fill(values[i], CellValue.EMPTY);
 	}
-	
-	private void initValues(){
-		for(int line = 0; line < values.length; line++)
-			for(int column = 0; column < values[line].length; column++)
-				values[line][column] = CellValue.EMPTY_VALUE;
-	}
-	
-	public String toString() {
-		String boardStr = "";
-		for(int row = 0; row < values.length; row++)
-			boardStr += getRow(row) + '\n';
-		return boardStr;
-	}
-	
-	private String getRow(int row) {
-		String lineStr = "";
-		for(int column = 0; column < values[row].length; column++)
-			lineStr += " " + values[row][column].charValue() + " ";
-		return lineStr;
-	}
-	
-	public void setValue(Position position, CellValue value) {
-		int row = position.getRow();
-		int column = position.getColumn();
-		values[row][column] = value;
-	}
-	
-	public boolean isEmptyCell(Position position){
-		int row = position.getRow();
-		int column = position.getColumn();
-		return values[row][column] == CellValue.EMPTY_VALUE;
-	}
-	
+
 	public CellValue getValue(Position position) {
-		int row = position.getRow();
-		int column = position.getColumn();
-		return values[row][column];
+		return values[position.getRow()][position.getColumn()];
+	}
+
+	public void setValue(Position position, CellValue value) {
+		values[position.getRow()][position.getColumn()] = value;
 	}
 	
-	public int size() {
-		return values.length;
+	public boolean completesLine(Position position) {
+		if(completesRow(position.getRow()))
+			return true;
+		if(completesColumn(position.getColumn()))
+			return true;
+		if(completesDiagonal(Diagonals.TopLeft, position))
+			return true;
+		if(completesDiagonal(Diagonals.TopRight, position))
+			return true;
+		return false;
+	}
+	
+	private boolean completesRow(int row) {
+		CellValue value = values[row][0];
+		for(int column = 1; column < 3; column++)
+			if(values[row][column] != value)
+				return false;
+		return true;
+	}
+
+	private boolean completesColumn(int column) {
+		CellValue value = values[0][column];
+		for(int row = 0; row < 3; row++)
+			if(values[row][column] != value)
+				return false;
+		return true;
+	}
+	
+	private boolean completesDiagonal(Diagonals diagonal, Position position) {
+		if(!diagonal.containsPosition(position))
+			return false;
+		CellValue value = values[position.getRow()][position.getColumn()];
+		for(int row = 0; row < values.length; row++)
+			if(values[row][diagonal.getColumnIndex(row)] != value)
+				return false;
+		return true;
 	}
 }
